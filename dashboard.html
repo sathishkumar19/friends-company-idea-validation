@@ -1,0 +1,868 @@
+<title>Idea Validation Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+
+<style>
+/* ================================================================
+   TOKEN SYSTEM
+   Dark-first strategic brief · Ranked-card list · Collapsible detail
+   ================================================================ */
+:root {
+  --bg:          #0c0f1a;
+  --surface:     #141928;
+  --surface-2:   #1b2135;
+  --surface-3:   #222a3f;
+  --fg:          #dddaf0;
+  --fg-2:        #8c8cac;
+  --fg-3:        #525272;
+  --border:      rgba(255,255,255,0.07);
+  --border-hi:   rgba(255,255,255,0.13);
+
+  --c-build:     #10cba2;
+  --c-build-bg:  rgba(16,203,162,0.1);
+  --c-test:      #f5a623;
+  --c-test-bg:   rgba(245,166,35,0.1);
+  --c-park:      #7a8fa8;
+  --c-park-bg:   rgba(122,143,168,0.1);
+  --c-skip:      #e05050;
+  --c-skip-bg:   rgba(224,80,80,0.1);
+  --c-invest:    #9b70d4;
+  --c-invest-bg: rgba(155,112,212,0.1);
+
+  --track:       rgba(255,255,255,0.08);
+  --gold:        #d4a017;
+
+  --ff-display:  'Syne', system-ui, sans-serif;
+  --ff-body:     'DM Sans', system-ui, sans-serif;
+
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg:          #eeedf6;
+    --surface:     #ffffff;
+    --surface-2:   #f4f3fb;
+    --surface-3:   #ebebf8;
+    --fg:          #12121e;
+    --fg-2:        #484868;
+    --fg-3:        #9090aa;
+    --border:      rgba(0,0,0,0.07);
+    --border-hi:   rgba(0,0,0,0.14);
+    --c-build:     #0a9e80;
+    --c-build-bg:  rgba(10,158,128,0.08);
+    --c-test:      #c47800;
+    --c-test-bg:   rgba(196,120,0,0.08);
+    --c-park:      #5a7080;
+    --c-park-bg:   rgba(90,112,128,0.08);
+    --c-skip:      #c03030;
+    --c-skip-bg:   rgba(192,48,48,0.08);
+    --c-invest:    #7a50b4;
+    --c-invest-bg: rgba(122,80,180,0.08);
+    --track:       rgba(0,0,0,0.07);
+    --gold:        #a07010;
+    color-scheme: light;
+  }
+}
+
+:root[data-theme="light"] {
+  --bg:          #eeedf6;
+  --surface:     #ffffff;
+  --surface-2:   #f4f3fb;
+  --surface-3:   #ebebf8;
+  --fg:          #12121e;
+  --fg-2:        #484868;
+  --fg-3:        #9090aa;
+  --border:      rgba(0,0,0,0.07);
+  --border-hi:   rgba(0,0,0,0.14);
+  --c-build:     #0a9e80;
+  --c-build-bg:  rgba(10,158,128,0.08);
+  --c-test:      #c47800;
+  --c-test-bg:   rgba(196,120,0,0.08);
+  --c-park:      #5a7080;
+  --c-park-bg:   rgba(90,112,128,0.08);
+  --c-skip:      #c03030;
+  --c-skip-bg:   rgba(192,48,48,0.08);
+  --c-invest:    #7a50b4;
+  --c-invest-bg: rgba(122,80,180,0.08);
+  --track:       rgba(0,0,0,0.07);
+  --gold:        #a07010;
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  font-family: var(--ff-body);
+  background: var(--bg);
+  color: var(--fg);
+  margin: 0;
+  padding-inline: 16px;
+  padding-block: 0 56px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.wrap { max-width: 880px; margin: 0 auto; }
+
+/* ── HEADER ── */
+.site-header {
+  padding-block: 28px 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.site-header h1 {
+  font-family: var(--ff-display);
+  font-size: clamp(18px,4vw,24px);
+  font-weight: 800;
+  margin: 0 0 5px;
+  letter-spacing: -0.4px;
+}
+
+.header-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.pill {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--fg-2);
+  white-space: nowrap;
+}
+
+.theme-btn {
+  background: var(--surface);
+  border: 1px solid var(--border-hi);
+  border-radius: 6px;
+  padding: 5px 12px;
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--fg-2);
+  cursor: pointer;
+  font-family: var(--ff-body);
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+.theme-btn:hover { color: var(--fg); border-color: var(--fg-3); }
+
+/* ── TOP RECOMMENDATION ── */
+.top-rec {
+  background: var(--c-build-bg);
+  border: 1px solid var(--c-build);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: center;
+}
+@media (max-width: 500px) { .top-rec { grid-template-columns: 1fr; } }
+
+.top-rec-eye {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-build);
+  margin-bottom: 5px;
+}
+
+.top-rec h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(15px,3vw,18px);
+  font-weight: 700;
+  margin: 0 0 7px;
+  text-wrap: balance;
+}
+
+.top-rec p {
+  font-size: 13px;
+  color: var(--fg-2);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.top-score {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.score-big {
+  font-family: var(--ff-display);
+  font-size: 44px;
+  font-weight: 800;
+  color: var(--c-build);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.score-big-sub {
+  font-size: 11px;
+  color: var(--fg-3);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-top: 3px;
+}
+
+/* ── STATS ROW ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 24px;
+}
+@media (max-width: 540px) { .stats-row { grid-template-columns: repeat(2,1fr); } }
+
+.stat-tile {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 14px 16px;
+}
+
+.stat-val {
+  font-family: var(--ff-display);
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-lbl {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fg-3);
+  margin-top: 4px;
+}
+
+/* ── FILTERS ── */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.filter-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 13px;
+  font-family: var(--ff-body);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-2);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.filter-btn:hover { border-color: var(--border-hi); color: var(--fg); }
+.filter-btn.active { background: var(--surface-3); border-color: var(--border-hi); color: var(--fg); }
+
+/* ── CARD LIST ── */
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+/* ── IDEA CARD ── */
+.idea-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.idea-card:hover { border-color: var(--border-hi); }
+
+.idea-card[data-s="build"]  { border-left: 3px solid var(--c-build); }
+.idea-card[data-s="test"]   { border-left: 3px solid var(--c-test); }
+.idea-card[data-s="park"]   { border-left: 3px solid var(--c-park); }
+.idea-card[data-s="skip"]   { border-left: 3px solid var(--c-skip); }
+.idea-card[data-s="invest"] { border-left: 3px solid var(--c-invest); }
+
+.card-head {
+  padding: 15px 16px;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 40px 1fr 26px;
+  gap: 10px;
+  align-items: start;
+  user-select: none;
+}
+@media (max-width: 420px) { .card-head { grid-template-columns: 30px 1fr 22px; } }
+
+/* rank */
+.rank {
+  font-family: var(--ff-display);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--fg-3);
+  line-height: 1.1;
+  padding-top: 3px;
+  font-variant-numeric: tabular-nums;
+}
+.rank.r1 { color: var(--gold); }
+.rank.r2, .rank.r3 { color: var(--fg-2); }
+
+/* card content */
+.card-body { min-width: 0; }
+
+.card-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 3px;
+}
+
+.card-name {
+  font-family: var(--ff-display);
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--fg);
+  line-height: 1.3;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 4px;
+  padding: 2px 7px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.chip.build  { color: var(--c-build);  background: var(--c-build-bg); }
+.chip.test   { color: var(--c-test);   background: var(--c-test-bg); }
+.chip.park   { color: var(--c-park);   background: var(--c-park-bg); }
+.chip.skip   { color: var(--c-skip);   background: var(--c-skip-bg); }
+.chip.invest { color: var(--c-invest); background: var(--c-invest-bg); }
+
+.pivot-pill {
+  font-size: 10px;
+  font-weight: 600;
+  background: var(--surface-3);
+  color: var(--fg-2);
+  border-radius: 3px;
+  padding: 1px 6px;
+  white-space: nowrap;
+}
+
+.card-sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--fg-2);
+  margin-bottom: 10px;
+}
+
+.seg { font-size: 11px; font-weight: 600; background: var(--surface-2); border-radius: 3px; padding: 1px 6px; color: var(--fg-2); }
+
+.div-badge {
+  font-size: 10.5px;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+.div-badge.up   { background: var(--c-build-bg); color: var(--c-build); }
+.div-badge.down { background: var(--c-skip-bg);  color: var(--c-skip); }
+
+/* score bars */
+.score-bars { display: flex; flex-direction: column; gap: 5px; }
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 58px 1fr 34px;
+  align-items: center;
+  gap: 7px;
+}
+
+.bar-lbl {
+  font-size: 11px;
+  color: var(--fg-3);
+  font-weight: 500;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.bar-track {
+  height: 5px;
+  border-radius: 3px;
+  background: var(--track);
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 3px;
+}
+
+.bar-num {
+  font-size: 11.5px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* toggle icon */
+.toggle-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: var(--fg-3);
+  transition: transform 0.2s, background 0.15s;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.idea-card.open .toggle-icon { transform: rotate(180deg); background: var(--surface-3); color: var(--fg-2); }
+
+/* ── EXPANDED DETAIL ── */
+.card-detail {
+  display: none;
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+  padding: 16px 18px 18px 68px;
+}
+@media (max-width: 420px) { .card-detail { padding-left: 18px; } }
+.idea-card.open .card-detail { display: block; }
+
+.d-sec { margin-bottom: 15px; }
+.d-sec:last-child { margin-bottom: 0; }
+
+.d-lbl {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin-bottom: 6px;
+}
+
+.verdict-c {
+  font-size: 12.5px;
+  color: var(--fg-2);
+  font-style: italic;
+  line-height: 1.55;
+  margin: 0 0 7px;
+  padding-left: 10px;
+  border-left: 2px solid var(--border-hi);
+}
+
+.verdict-f {
+  font-size: 13px;
+  color: var(--fg);
+  font-weight: 500;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* criteria */
+.crit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 7px 16px;
+}
+
+.crit-row {
+  display: grid;
+  grid-template-columns: 1fr 68px 24px;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--fg-2);
+}
+
+.crit-dots { display: flex; gap: 3px; }
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: var(--track);
+  flex-shrink: 0;
+}
+.dot.on { background: var(--dot-c, var(--c-build)); }
+
+.crit-n {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--fg-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* action box */
+.act-box {
+  background: var(--surface-3);
+  border-radius: 6px;
+  padding: 10px 13px;
+  font-size: 12.5px;
+  line-height: 1.55;
+}
+
+/* ── INSIGHTS ── */
+.insights {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--border);
+}
+
+.insights h2 {
+  font-family: var(--ff-display);
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 14px;
+}
+
+.insights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+  gap: 10px;
+}
+
+.ins-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.ins-eye {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  margin-bottom: 6px;
+}
+
+.ins-card p {
+  font-size: 12.5px;
+  color: var(--fg-2);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.ins-card strong { color: var(--fg); font-weight: 600; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+}
+</style>
+
+<div class="wrap">
+
+  <header class="site-header">
+    <div>
+      <h1>Idea Validation Dashboard</h1>
+      <div class="header-pills">
+        <span class="pill">📍 Bangalore · Australia · US</span>
+        <span class="pill">💰 ₹30L budget</span>
+        <span class="pill">👥 Infra / Cloud Architects</span>
+        <span class="pill">7 ideas evaluated</span>
+      </div>
+    </div>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()">☀ Light</button>
+  </header>
+
+  <div class="top-rec">
+    <div>
+      <div class="top-rec-eye">★ Top Recommendation</div>
+      <h2>Indian Regulatory Compliance SaaS</h2>
+      <p>Best domain fit for Infra/Cloud architects. Sell ₹75k manual gap reports before writing software. One regulator (SEBI CSCRF or RBI), one cloud (AWS), one package — then expand.</p>
+    </div>
+    <div class="top-score">
+      <div class="score-big">31</div>
+      <div class="score-big-sub">Founder Score / 35</div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-tile">
+      <div class="stat-val" style="color:var(--c-build)">1</div>
+      <div class="stat-lbl">Build It</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-val" style="color:var(--c-test)">3</div>
+      <div class="stat-lbl">Test / Pivot</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-val" style="color:var(--c-park)">1</div>
+      <div class="stat-lbl">Park It</div>
+    </div>
+    <div class="stat-tile">
+      <div class="stat-val" style="color:var(--fg-2)">2</div>
+      <div class="stat-lbl">Skip / Side Invest</div>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="setFilter('all',this)">All 7</button>
+    <button class="filter-btn" onclick="setFilter('build',this)">Build</button>
+    <button class="filter-btn" onclick="setFilter('test',this)">Test</button>
+    <button class="filter-btn" onclick="setFilter('park',this)">Park</button>
+    <button class="filter-btn" onclick="setFilter('skip',this)">Skip</button>
+    <button class="filter-btn" onclick="setFilter('invest',this)">Side Invest</button>
+  </div>
+
+  <div class="card-list" id="cardList"></div>
+
+  <section class="insights">
+    <h2>Key Insights</h2>
+    <div class="insights-grid">
+      <div class="ins-card">
+        <div class="ins-eye">Biggest score divergence</div>
+        <p><strong>Sports Facility</strong> got Claude's 2nd-highest rating (23/35) but founders' lowest (13/35). The build costs <strong>₹70L–1Cr</strong> — more than the entire budget — needs no tech skills, and can't be run remotely.</p>
+      </div>
+      <div class="ins-card">
+        <div class="ins-eye">Pivot flips the verdict</div>
+        <p>Claude rated <strong>Scrappy</strong> "Kill it" (14/35). The <strong>ITAD pivot</strong> (certified laptop/server disposal for DPDP compliance) scores 24/35 for founders — the buyer is a peer, and the deal size is ₹50k–5L.</p>
+      </div>
+      <div class="ins-card">
+        <div class="ins-eye">Budget discipline</div>
+        <p>Spend at most <strong>₹3L proving demand</strong> before committing to software. The Compliance SaaS can earn revenue first (₹75k gap reports done manually) and fund its own build from there.</p>
+      </div>
+      <div class="ins-card">
+        <div class="ins-eye">Remote work split</div>
+        <p>Top 3 ideas let <strong>Bangalore</strong> own sales and client meetings while <strong>Australia / US</strong> build the platform. Sports Facility and smart-scheduling field sales give only Bangalore a meaningful role.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+const STATUS = {
+  build:  { label: 'Build It',        c: 'var(--c-build)'  },
+  test:   { label: 'Test It',         c: 'var(--c-test)'   },
+  park:   { label: 'Park It',         c: 'var(--c-park)'   },
+  skip:   { label: 'Skip',            c: 'var(--c-skip)'   },
+  invest: { label: 'Side Investment', c: 'var(--c-invest)' },
+};
+
+const CRITERIA = ['Domain Fit','Implementability','Budget Scalability','AI-Native','Target Market','Competition','Remote Work'];
+
+const IDEAS = [
+  {
+    id:1, rank:1, s:'build',
+    name:'Indian Regulatory Compliance SaaS',
+    pitcher:'Sathish', seg:'B2B',
+    cs:24, fs:31,
+    pivot:null,
+    cv:'Build it much narrower — cut 3 packages to 1 wedge. Pick SEBI CSCRF or RBI first, AWS only, no autonomous agents in production.',
+    fv:'Best fit in the set. Start here. Sell ₹75k manual gap reports using open-source tools (Prowler, Steampipe). One regulator, one cloud, one package for the first 9 months.',
+    cr:[5,5,5,4,4,3,5],
+    action:'Survey 60 regulated companies to pick the regulator. Sign 1 compliance lawyer as advisor. Sell 2 manual gap reports at ₹75k each.',
+    budget:'₹3L → prove demand  ·  ₹10L → MVP  ·  ₹12L → scale  ·  ₹5L reserve',
+  },
+  {
+    id:2, rank:2, s:'test',
+    name:'Scrappy → IT Asset Disposal (ITAD)',
+    pitcher:'Ramesh', seg:'B2B',
+    cs:14, fs:24,
+    pivot:'Pivot: ITAD',
+    cv:'Kill the household scrap app — kabadiwalas beat it for free. Adjacent pivot: certified data-erasure for DPDP compliance is where the value is.',
+    fv:'Drop the household app. The ITAD pivot scores 24/35. Datacenter architects understand server/laptop lifecycles, the DPDP Act forces certified wipes, and each deal is worth ₹50k–5L. Natural bundle with Idea #1.',
+    cr:[4,4,3,3,4,3,3],
+    action:'Call 40 IT/Admin heads at 200–2,000 employee companies. Offer certified data-wipe + EPR recycling certificate. Ask for a paid pilot quote.',
+    budget:'₹1.5L → prove demand  ·  ₹6L → service + tooling  ·  ₹8L → scale',
+  },
+  {
+    id:3, rank:3, s:'test',
+    name:'IT / OT for MSMEs',
+    pitcher:'Sampath, Arun', seg:'B2B',
+    cs:20, fs:22,
+    pivot:null,
+    cv:'Pivot go-to-market — lead with a savings guarantee ("cut your power bill 8–15% or don\'t pay"), or sell to the OEM who buys from the MSMEs.',
+    fv:'Second choice. Run a cheap test first: 10 energy meters in 5 Hosur shops for ₹15k. Only commit more if shops pay and savings are real. Hire a local automation engineer before scaling.',
+    cr:[3,4,3,4,3,3,2],
+    action:'Buy 10 Modbus clamp-on meters + a Wi-Fi gateway (~₹12k). Free 7-day install in 5 shops via HOSIA/CODISSIA. Show savings report. Ask ₹2,000/machine/month.',
+    budget:'₹0.5L → pilot  ·  ₹6L → 15 shop cluster  ·  ₹10L → OEM channel  ·  ₹13.5L reserve',
+  },
+  {
+    id:4, rank:4, s:'park',
+    name:'Drone Orchestration → Agri Fleet Compliance',
+    pitcher:'Sathish', seg:'B2B',
+    cs:13, fs:22,
+    pivot:'Pivot: Agri Fleet',
+    cv:'Kill it (park it). Neutral middleware for a market at pilot stage. Revisit when any Indian operator passes 100k deliveries/month.',
+    fv:'Park the urban delivery idea — ₹30L won\'t last through enterprise sales. The agri-drone fleet compliance pivot scores better (22) but rural sales are hard. Run the ₹5k experiment only after the top idea is started.',
+    cr:[3,4,4,3,3,3,2],
+    action:'Optional experiment: contact 20 agri-drone operators via state agriculture depts. Show a mock DGCA logbook. Quote ₹1,000/drone/month. Budget: ₹5,000.',
+    budget:'₹5k experiment only — no further spend until the main idea is funded',
+  },
+  {
+    id:5, rank:5, s:'test',
+    name:'Smart Scheduling → Clinic Queue + AI Front Desk',
+    pitcher:'Rajesh', seg:'B2C → B2B',
+    cs:17, fs:22,
+    pivot:'Pivot: Clinic AI',
+    cv:'Pivot to WhatsApp live-queue for walk-in clinics. Drop the home-service marketplace — Urban Company has spent years and VC money building worker supply.',
+    fv:'Side experiment only. The AI front desk scores 5/5 on AI-native potential. But door-to-door SMB sales to clinics is the hardest sales motion for this team. Run the ₹999 pilot cheaply before committing.',
+    cr:[2,4,4,5,3,2,2],
+    action:'Visit 30 single-doctor clinics. One-page offer: WhatsApp queue updates for ₹999/month. Ask for payment upfront. Run it manually first to test the model.',
+    budget:'₹0.1L → manual pilot  ·  ₹4L → automated product  ·  ₹8L → scale (only if pilot works)',
+  },
+  {
+    id:6, rank:6, s:'skip',
+    name:'VC / Incubation-OS for Tier-2 Colleges',
+    pitcher:'Arun', seg:'B2B',
+    cs:13, fs:16,
+    pivot:null,
+    cv:'Kill it as SaaS — colleges have no budget, free government portals (IIC, AICTE) are mandatory, and Unstop/Devfolio already cover the basics at zero cost.',
+    fv:'Not the company to build. Use colleges as a mentoring and intern pipeline for the main venture instead. Revisit as personal angel investing only after the main company earns revenue.',
+    cr:[1,3,2,3,2,2,3],
+    action:'No company spend. Use college networks for mentoring and early hiring. Run a "build with us" intern programme once the main company is started.',
+    budget:'Zero company spend. Personal angel cheques only if desired, outside the ₹30L startup budget.',
+  },
+  {
+    id:7, rank:7, s:'invest',
+    name:'Sports Facility via Leasing',
+    pitcher:'Arun', seg:'B2C',
+    cs:23, fs:13,
+    pivot:null,
+    cv:'Build it as a cash-flow business (not a startup) — pickleball + badminton, 9–10 year lease, hire a venue GM, list on Playo and Hudle.',
+    fv:'Doesn\'t fit the founders\' vision. Build cost is ₹70L–1Cr — more than the entire budget. Needs no tech skills, isn\'t AI-native, and only the Bangalore founder can run it. Separate investment, not the startup.',
+    cr:[1,2,1,1,4,3,1],
+    action:'If pursuing separately: track slot fill on Playo/Hudle for 14 days first. Fund with a separate loan or personal money, not the ₹30L startup budget. Hire a venue GM before signing.',
+    budget:'⚠ Budget conflict: estimated ₹70L–1Cr build vs ₹30L total. Needs separate funding.',
+  },
+];
+
+function dotColor(s) {
+  return { build:'var(--c-build)', test:'var(--c-test)', park:'var(--c-park)', skip:'var(--c-skip)', invest:'var(--c-invest)' }[s] || 'var(--c-build)';
+}
+
+function divBadge(cs, fs) {
+  const d = fs - cs;
+  if (Math.abs(d) < 5) return '';
+  if (d > 0) return `<span class="div-badge up">▲ +${d} vs Claude</span>`;
+  return `<span class="div-badge down">▼ ${Math.abs(d)} vs Claude</span>`;
+}
+
+function card(idea) {
+  const sm = STATUS[idea.s];
+  const dc = dotColor(idea.s);
+  const cpct = (idea.cs / 35 * 100).toFixed(1);
+  const fpct = (idea.fs / 35 * 100).toFixed(1);
+  const rc = idea.rank <= 3 ? `r${idea.rank}` : '';
+
+  const crHTML = CRITERIA.map((label, i) => {
+    const n = idea.cr[i];
+    const dots = [0,1,2,3,4].map(j =>
+      `<div class="dot${j<n?' on':''}" style="--dot-c:${dc}"></div>`
+    ).join('');
+    return `<div class="crit-row">
+      <span>${label}</span>
+      <div class="crit-dots">${dots}</div>
+      <span class="crit-n">${n}/5</span>
+    </div>`;
+  }).join('');
+
+  const pivotHTML = idea.pivot ? `<span class="pivot-pill">⟳ ${idea.pivot}</span>` : '';
+
+  return `<article class="idea-card" data-s="${idea.s}" id="c${idea.id}">
+  <div class="card-head" onclick="toggle(${idea.id})">
+    <div class="rank ${rc}">${String(idea.rank).padStart(2,'0')}</div>
+    <div class="card-body">
+      <div class="card-title-row">
+        <span class="card-name">${idea.name}</span>
+        <span class="chip ${idea.s}">${sm.label}</span>
+        ${pivotHTML}
+      </div>
+      <div class="card-sub">
+        <span>by ${idea.pitcher}</span>
+        <span class="seg">${idea.seg}</span>
+        ${divBadge(idea.cs, idea.fs)}
+      </div>
+      <div class="score-bars">
+        <div class="bar-row">
+          <span class="bar-lbl">Claude</span>
+          <div class="bar-track"><div class="bar-fill" style="width:${cpct}%;background:var(--fg-3)"></div></div>
+          <span class="bar-num" style="color:var(--fg-3)">${idea.cs}/35</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-lbl">Founders</span>
+          <div class="bar-track"><div class="bar-fill" style="width:${fpct}%;background:${sm.c}"></div></div>
+          <span class="bar-num" style="color:${sm.c}">${idea.fs}/35</span>
+        </div>
+      </div>
+    </div>
+    <div class="toggle-icon">▾</div>
+  </div>
+  <div class="card-detail">
+    <div class="d-sec">
+      <div class="d-lbl">Verdicts</div>
+      <p class="verdict-c">Claude: ${idea.cv}</p>
+      <p class="verdict-f">Founders: ${idea.fv}</p>
+    </div>
+    <div class="d-sec">
+      <div class="d-lbl">Founder Criteria — scored 1–5 each</div>
+      <div class="crit-grid">${crHTML}</div>
+    </div>
+    <div class="d-sec">
+      <div class="d-lbl">Next Action</div>
+      <div class="act-box">${idea.action}</div>
+    </div>
+    <div class="d-sec">
+      <div class="d-lbl">Budget Allocation</div>
+      <div class="act-box" style="color:var(--fg-2)">${idea.budget}</div>
+    </div>
+  </div>
+</article>`;
+}
+
+document.getElementById('cardList').innerHTML = IDEAS.map(card).join('');
+
+function toggle(id) {
+  document.getElementById('c'+id).classList.toggle('open');
+}
+
+function setFilter(f, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.idea-card').forEach(el => {
+    el.hidden = f !== 'all' && el.dataset.s !== f;
+  });
+}
+
+function toggleTheme() {
+  const root = document.documentElement;
+  const btn = document.getElementById('themeBtn');
+  const isDark = root.dataset.theme === 'dark' ||
+    (!root.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+  if (isDark) { root.dataset.theme = 'light'; btn.textContent = '☾ Dark'; }
+  else        { root.dataset.theme = 'dark';  btn.textContent = '☀ Light'; }
+}
+
+// Set initial button label
+(function(){
+  const btn = document.getElementById('themeBtn');
+  btn.textContent = matchMedia('(prefers-color-scheme: dark)').matches ? '☀ Light' : '☾ Dark';
+})();
+</script>
