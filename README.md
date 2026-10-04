@@ -1,0 +1,1 @@
+# friends-company-idea-validation
