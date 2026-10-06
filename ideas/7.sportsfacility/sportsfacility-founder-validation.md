@@ -6,7 +6,7 @@
 | **Pitched by** | Arun |
 | **Validated on** | 2026-10-04 |
 | **Claude validation score** | 23/35 |
-| **Founder-criteria score** | **13/35** |
+| **Founder-criteria score** | **19/45** |
 | **Verdict for this team** | **Doesn't fit the founders' vision.** A sound local business, but it uses the whole budget, needs no tech skills and only works for the founders in Bangalore. |
 
 > **Founder profile used for this assessment:** Infra/Cloud Architects (datacenter, cloud, software, DevOps). Budget about ₹30L, to be spent in stages. Limited sales experience, willing to learn. Founders based in Bangalore, Australia and the US.
@@ -28,7 +28,9 @@ Claude's validation rated this the most *bankable* idea: demand is proven and it
 | **Target Market** | 4 | Clear and proven: working adults 25–45 within 5 km, kids' coaching, corporate leagues. Easy to reach through Playo, Hudle and community WhatsApp groups. |
 | **Competitive Landscape** | 3 | Local competition only. Pickleball courts are in short supply for perhaps 2–3 years. Many venues fail from bad location, too many sports or short leases. |
 | **Remote Collaboration** | 1 | Daily operations, staff, maintenance and coaches all need someone on site. Only the Bangalore founder(s) can run it. |
-| **Total** | **13/35** | **Poor fit for this team's goals** |
+| **MOAT** | 2 | A well-run venue with a 9–10 year lease and a loyal coaching community has local stickiness. Pickleball scarcity gives a 2–3 year window. No tech moat; another investor can sign a lease nearby. |
+| **NorthStar / ARR** | 4 | The most predictable revenue model in the set: slot bookings, membership passes, coaching fees and corporate league contracts. North Star metric: court utilisation rate (target 70%+ during peak hours). ARR is strong once the venue is operational, but requires full capex upfront. |
+| **Total** | **19/45** | **Poor fit for this team's goals** |
 
 ## 3. Why the Score Differs From Claude's 23/35
 

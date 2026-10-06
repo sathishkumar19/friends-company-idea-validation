@@ -6,7 +6,7 @@
 | **Pitched by** | Sathish |
 | **Validated on** | 2026-10-04 |
 | **Claude validation score** | 13/35 |
-| **Founder-criteria score** | **16/35** (as pitched) · **22/35** (agri-drone fleet compliance pivot) |
+| **Founder-criteria score** | **20/45** (as pitched) · **27/45** (agri-drone fleet compliance pivot) |
 | **Verdict for this team** | **Park it.** The skills fit the software layer, but the market isn't ready and ₹30L won't last through enterprise sales cycles. |
 
 > **Founder profile used for this assessment:** Infra/Cloud Architects (datacenter, cloud, software, DevOps). Budget about ₹30L, to be spent in stages. Limited sales experience, willing to learn. Founders based in Bangalore, Australia and the US.
@@ -28,7 +28,9 @@ The founders could build this platform: multi-tenant APIs, telemetry pipelines, 
 | **Target Market** | 1 | About 5 quick-commerce firms and about 15 drone operators in India, mostly at trial stage. Urban delivery volume is close to zero. |
 | **Competitive Landscape** | 2 | Skye Air built its own UTM. FlytBase pivoted away from delivery. AirMap (US, $100M+ raised) shut down. Zipline and Wing are full-stack. The "neutral layer" gap exists because nobody pays for it yet. |
 | **Remote Collaboration** | 3 | The software can be built remotely. Customers and regulators are in India. **Note:** Wing operates commercial delivery in Australia, and Wing and Zipline operate in the US, so the Australia and US founders sit closer to more mature markets, but those players run their own stacks. |
-| **Total** | **16/35** | **Weak fit** |
+| **MOAT** | 2 | First-mover on a neutral UTM layer has some value, but the market hasn't formed and every operator currently prefers to own their stack. No IP moat; DGCA rules are public. AirMap raised $100M+ and still failed to sustain the neutral-layer model. |
+| **NorthStar / ARR** | 2 | A per-flight or per-operator SaaS fee is a clean model on paper, but commercial delivery volume in India is close to zero. No ARR is achievable until operators pass viable flight volumes. North Star metric (deliveries orchestrated per day) can't be measured yet. |
+| **Total** | **20/45** | **Weak fit** |
 
 ## 3. Founder-Criteria Scorecard (Pivot: Agri-Drone Fleet Compliance)
 
@@ -43,7 +45,9 @@ Agricultural spraying is where Indian drone volume actually is (government schem
 | **Target Market** | 3 | Many small buyers with real, recurring flights. Price-sensitive and rural, so harder to reach. |
 | **Competitive Landscape** | 3 | Drone OEMs ship basic apps. No dominant independent fleet-compliance tool for agri operators is visible yet. Verify this in research. |
 | **Remote Collaboration** | 2 | Customers are rural operators and SHG coordinators. Selling needs field visits and regional languages. |
-| **Total** | **22/35** | **Moderate fit** |
+| **MOAT** | 2 | Early-mover in agri fleet compliance is a thin moat — drone OEMs could bundle a logbook into their hardware app at any time. Data network (aggregated flight logs across operators) could become a moat over time but is not one yet. |
+| **NorthStar / ARR** | 3 | Per-drone monthly subscription (₹500–1,000) is a clean ARR model. North Star metric: active drones with compliant flight logs. Loses points because the market is highly price-sensitive and rural; collection is operationally hard. |
+| **Total** | **27/45** | **Moderate fit** |
 
 ## 4. Budget View
 

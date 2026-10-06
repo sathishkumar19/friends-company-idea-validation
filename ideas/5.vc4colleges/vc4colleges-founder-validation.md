@@ -6,7 +6,7 @@
 | **Pitched by** | Arun |
 | **Validated on** | 2026-10-04 |
 | **Claude validation score** | 13/35 |
-| **Founder-criteria score** | **16/35** |
+| **Founder-criteria score** | **18/45** |
 | **Verdict for this team** | **Not the company to build.** Keep it as a give-back activity alongside the main venture. |
 
 > **Founder profile used for this assessment:** Infra/Cloud Architects (datacenter, cloud, software, DevOps). Budget about ₹30L, to be spent in stages. Limited sales experience, willing to learn. Founders based in Bangalore, Australia and the US.
@@ -30,7 +30,9 @@ What the team *does* have is experience and a three-country network. That's valu
 | **Target Market** | 2 | Defined (IIC coordinators at Tier-2/3 colleges), but they're part-time faculty with annual budget cycles and need Principal or trustee approval. Many institutions, little money. |
 | **Competitive Landscape** | 2 | Unstop, Devfolio and HackerEarth are free for students. The IIC portal, AICTE, Atal Innovation Mission and state missions (StartupTN, KSUM) cover reporting and grants for free. |
 | **Remote Collaboration** | 3 | Software and mentoring can be remote, and founders in Australia and the US widen the mentor network. College relationships and events need someone in India. |
-| **Total** | **16/35** | **Weak fit as a business** |
+| **MOAT** | 1 | No defensible moat. Government portals are free and mandated; no college will pay for an overlay. Mentoring relationships are personal, not scalable, and cannot become a company asset. |
+| **NorthStar / ARR** | 1 | No viable ARR path. College SaaS revenue peaks at ₹25k–1L per institution per year, and most institutions expect free tools. The fund version depletes capital with a 7–10 year payback window, leaving nothing for growth. |
+| **Total** | **18/45** | **Weak fit as a business** |
 
 ## 3. Budget View
 

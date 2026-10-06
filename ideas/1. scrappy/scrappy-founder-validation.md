@@ -6,7 +6,7 @@
 | **Pitched by** | Ramesh |
 | **Validated on** | 2026-10-04 |
 | **Claude validation score** | 14/35 |
-| **Founder-criteria score** | **13/35** (as pitched) · **24/35** (IT asset disposal pivot) |
+| **Founder-criteria score** | **15/45** (as pitched) · **30/45** (IT asset disposal pivot) |
 | **Verdict for this team** | **Drop the household app.** The IT asset disposal pivot fits this team well and is worth testing. |
 
 > **Founder profile used for this assessment:** Infra/Cloud Architects (datacenter, cloud, software, DevOps). Budget about ₹30L, to be spent in stages. Limited sales experience, willing to learn. Founders based in Bangalore, Australia and the US.
@@ -32,7 +32,9 @@ The pivot changes the picture. **IT asset disposition (ITAD)**, meaning certifie
 | **Target Market** | 2 | Clearly defined (urban households) and reachable through societies, but low value and infrequent use. |
 | **Competitive Landscape** | 2 | The local kabadiwala is free, trusted and pays cash. ScrapUncle, The Kabadiwala and Kabadiwalla Connect have stayed small for years. |
 | **Remote Collaboration** | 1 | Everything happens on the ground in one Indian city. The Australia and US founders can't contribute meaningfully. |
-| **Total** | **13/35** | **Poor fit** |
+| **MOAT** | 1 | No defensible moat. Kabadiwalas already have local trust, pricing leverage and pickup relationships built over decades. Any tech overlay can be copied or ignored. |
+| **NorthStar / ARR** | 1 | No recurring revenue model. Revenue is ₹30–60 margin per pickup; no subscription path. North Star would be pickups per day, but volume needed for viability is unachievable on ₹30L. |
+| **Total** | **15/45** | **Poor fit** |
 
 ## 3. Founder-Criteria Scorecard (Pivot: IT Asset Disposition)
 
@@ -45,7 +47,9 @@ The pivot changes the picture. **IT asset disposition (ITAD)**, meaning certifie
 | **Target Market** | 4 | Defined: IT and admin heads at 200–2,000-employee companies, GCCs and datacenters. Reachable through the founders' own professional networks. Each deal is worth ₹50k–5L. |
 | **Competitive Landscape** | 3 | Authorised recyclers (Attero, E-Parisaraa, Cerebra) and global ITAD firms (Iron Mountain, Sims Lifecycle) exist. **Gap:** a tech-first service focused on data-erasure proof for DPDP, with a clean digital audit trail, for mid-market companies. |
 | **Remote Collaboration** | 3 | Physical work stays in India, but certificate platform, valuation and reporting software can be built remotely. ITAD is also a mature market in Australia and the US if the model works. |
-| **Total** | **24/35** | **Reasonable fit, worth testing** |
+| **MOAT** | 3 | DPDP-compliant data-erasure certificates with a verifiable digital chain of custody create stickiness — a company that trusted you for one asset refresh will return for the next. Loses points because the service model is replicable by any authorised recycler who adds a digital layer. |
+| **NorthStar / ARR** | 3 | Hardware refresh cycles (laptops every 3–4 years, servers at migration) create natural repeat business. A retainer model (quarterly compliance reporting per device lifecycle) can approach ARR. North Star metric: certified assets disposed per quarter. Not pure ARR — each job must be re-sold unless a retainer is structured. |
+| **Total** | **30/45** | **Reasonable fit, worth testing** |
 
 ## 4. ₹30L Budget Plan (Pivot Only)
 

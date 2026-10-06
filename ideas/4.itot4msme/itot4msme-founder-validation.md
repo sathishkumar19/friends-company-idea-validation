@@ -6,7 +6,7 @@
 | **Pitched by** | Sampath, Arun |
 | **Validated on** | 2026-10-04 |
 | **Claude validation score** | 20/35 |
-| **Founder-criteria score** | **22/35** |
+| **Founder-criteria score** | **29/45** |
 | **Verdict for this team** | **Second choice. Test it cheaply** with energy monitoring in 5 shops. Don't fund it fully until the OT gap is filled. |
 
 > **Founder profile used for this assessment:** Infra/Cloud Architects (datacenter, cloud, software, DevOps). Budget about ₹30L, to be spent in stages. Limited sales experience, willing to learn. Founders based in Bangalore, Australia and the US.
@@ -28,7 +28,9 @@ The IT half of IT/OT is the founders' home ground: edge gateways, networking, ti
 | **Target Market** | 3 | Clearly defined: 20–100 employee CNC and press shops in Hosur, Coimbatore and Peenya. Reachable through HOSIA, CODISSIA and cluster word of mouth. Willingness to pay is low unless savings are proven. |
 | **Competitive Landscape** | 3 | Infinite Uptime, Altizon, Entrib and Faclon focus on mid-to-large plants. Zenatix (now Schneider) shows energy monitoring sells. **Gap:** an MSME-priced, outcome-guaranteed energy and uptime service sold cluster by cluster, or paid for by the OEM. |
 | **Remote Collaboration** | 2 | Installs, troubleshooting and sales are physical in Tamil Nadu and Karnataka. The Australia and US founders can build the data platform, AI models and dashboards, but can't sell or install. |
-| **Total** | **22/35** | **Moderate fit** |
+| **MOAT** | 3 | Outcome guarantee ("cut your power bill or don't pay") and cluster-level relationships lock in shops that have seen real savings. The OEM channel, once established, is hard for a competitor to unseat. Loses points because the hardware model is replicable and there is no IP protection on the software. |
+| **NorthStar / ARR** | 4 | Monthly subscription per machine (₹1,500–3,000) is a clean ARR model that scales with fleet size. North Star metric: kWh saved per monitored machine per month — a number the owner cares about independently. Loses a point because hardware costs must be recovered before subscriptions become profitable. |
+| **Total** | **29/45** | **Moderate fit** |
 
 ## 3. ₹30L Budget Plan (Staged)
 

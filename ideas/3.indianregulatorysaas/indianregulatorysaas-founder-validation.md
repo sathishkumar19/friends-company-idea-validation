@@ -6,7 +6,7 @@
 | **Pitched by** | Sathish |
 | **Validated on** | 2026-10-04 |
 | **Claude validation score** | 24/35 |
-| **Founder-criteria score** | **31/35** |
+| **Founder-criteria score** | **40/45** |
 | **Verdict for this team** | **Best fit in the set. Start here.** One regulator, services first, then software. |
 
 > **Founder profile used for this assessment:** Infra/Cloud Architects (datacenter, cloud, software, DevOps). Budget about ₹30L, to be spent in stages. Limited sales experience, willing to learn. Founders based in Bangalore, Australia and the US.
@@ -30,7 +30,9 @@ The weak spot is competition (Sprinto, Scrut, Vanta). The answer is depth on one
 | **Target Market** | 4 | Clearly defined: Series A–C fintechs, NBFCs, insurtechs, healthtechs and SEBI intermediaries with 100–1,000 staff. Reachable through CERT-In empanelled auditors and CTO communities. Mid-sized: a ₹50–150 Cr ARR ceiling in India. |
 | **Competitive Landscape** | 3 | Sprinto and Scrut (Bengaluru, well funded) are moving into DPDP. Vanta and Drata dominate SOC 2. OneTrust and Securiti are too expensive for the mid-market. **Gap:** control-by-control depth on one Indian regulator, evidence in the format auditors submit, and enforcement at the infrastructure-as-code level, which the GRC tools don't do well. |
 | **Remote Collaboration** | 5 | Pure software and documents. Engineering, content and mapping work happen async. Only customer and auditor meetings need the Bangalore founder in person, and most of those can be video calls. |
-| **Total** | **31/35** | **Strong fit** |
+| **MOAT** | 4 | Indian-regulator-specific control mappings and IaC-level enforcement are genuinely hard to replicate quickly. Auditor and CERT-In empanelled partner relationships create distribution switching costs. Loses a point because a well-funded Sprinto or Scrut could clone the regulator depth given 6–9 months. |
+| **NorthStar / ARR** | 5 | The clearest ARR model in the set: annual SaaS subscriptions from regulated fintechs and NBFCs, seeded by one-off gap reports that convert to retainers. North Star metric: number of regulated cloud workloads continuously compliant. SEBI and RBI deadlines create natural renewal urgency. |
+| **Total** | **40/45** | **Strong fit** |
 
 ## 3. Why the Score Differs From Claude's 24/35
 

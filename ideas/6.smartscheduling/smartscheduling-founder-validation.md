@@ -6,7 +6,7 @@
 | **Pitched by** | Rajesh |
 | **Validated on** | 2026-10-04 |
 | **Claude validation score** | 17/35 |
-| **Founder-criteria score** | **18/35** (as pitched) · **22/35** (WhatsApp queue + AI front desk for clinics) |
+| **Founder-criteria score** | **22/45** (as pitched) · **27/45** (WhatsApp queue + AI front desk for clinics) |
 | **Verdict for this team** | **Only the narrow clinic version is worth testing**, and only as a low-cost side experiment. |
 
 > **Founder profile used for this assessment:** Infra/Cloud Architects (datacenter, cloud, software, DevOps). Budget about ₹30L, to be spent in stages. Limited sales experience, willing to learn. Founders based in Bangalore, Australia and the US.
@@ -30,7 +30,9 @@ The narrow version, **WhatsApp queue updates plus an AI front desk for walk-in c
 | **Target Market** | 2 | Five verticals and two customer types (shops and consumers) means no clear customer. |
 | **Competitive Landscape** | 2 | Zenoti, Fresha, Dingg, Practo/Qikwell, Urban Company, YesMadam, Waitwhile and Qminder. |
 | **Remote Collaboration** | 3 | Software is remote-friendly; shop sign-ups and worker supply are local. |
-| **Total** | **18/35** | **Weak fit** |
+| **MOAT** | 2 | No moat across five verticals and two customer types. Competing against funded, entrenched players on every front simultaneously. No proprietary data advantage while the customer base is tiny. |
+| **NorthStar / ARR** | 2 | Revenue model is unclear across the full pitch (marketplace take-rate? SaaS fee? both?). No single north star metric. The marketplace model needs Urban Company-scale supply to be viable, which requires VC funding, not ₹30L. |
+| **Total** | **22/45** | **Weak fit** |
 
 ## 3. Founder-Criteria Scorecard (Pivot: Clinic Queue + AI Front Desk)
 
@@ -45,7 +47,9 @@ The product: patients get WhatsApp updates on their place in the queue and when 
 | **Target Market** | 3 | Defined: single- or two-doctor OPD clinics and diagnostic centres in Tier-2 cities. Reachable, but each clinic pays only about ₹1,000/month. |
 | **Competitive Landscape** | 2 | Practo owns clinic software in metros. Many AI receptionist startups are appearing globally. **Gap:** Tier-2 walk-in clinics on WhatsApp in local languages. |
 | **Remote Collaboration** | 2 | Every clinic is a field sale in India. The Australia and US founders can build the AI, but can't sell. (AI front desks for clinics are a bigger-ticket market in Australia and the US, but very crowded.) |
-| **Total** | **22/35** | **Moderate fit** |
+| **MOAT** | 2 | WhatsApp queue and AI receptionist are easy to replicate. Local-language training data for Tier-2 clinic patterns is a weak moat that grows slowly. A well-funded AI receptionist startup could undercut on price within months. |
+| **NorthStar / ARR** | 3 | Monthly subscription per clinic (₹999) is a clean ARR model. North Star metric: average patient wait time reduction across the network. Loses points because reaching ₹1 Cr ARR requires ~850 paying clinics — a very high volume of field sales for this team. |
+| **Total** | **27/45** | **Moderate fit** |
 
 ## 4. Budget View
 
